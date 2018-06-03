@@ -32,9 +32,10 @@ namespace Hamwic.Cif.Web
 
             //AddIdentity adds cookie based authentication
             //also adds scoped classed for UserManager, SignInManager, PasswordHashers etc.
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
                 //This adds the UserStore and RoleStore that the RoleManager, UserManager etc need
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI()
                 //Adds a provider that generates unique keys and hashes for things like
                 //forgot password links, phone number verification codes etc.
                 .AddDefaultTokenProviders();
