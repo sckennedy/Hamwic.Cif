@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="2.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
   </ItemGroup>
 
@@ -23,9 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Areas\Identity\Pages\_ViewStart.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
+    <Folder Include="Areas\Account\Controllers\" />
+    <Folder Include="Areas\Account\Data\" />
+    <Folder Include="Areas\Account\Models\" />
+    <Folder Include="Areas\Account\Views\" />
   </ItemGroup>
 
 </Project>
