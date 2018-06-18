@@ -1,34 +1,17 @@
-﻿using Hamwic.Cif.Core.Data;
-using Hamwic.Cif.Core.Entities;
-using Hamwic.Cif.Web.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Hamwic.Cif.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
 
 namespace Hamwic.Cif.Web.Controllers
 {
-    public class HomeController : Controller
+    [Authorize]
+    public class HomeController : BaseController
     {
         #region Private readonly variables
 
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-
-        #endregion
-
-        #region Constructor
-        public HomeController(ApplicationDbContext context, 
-            UserManager<ApplicationUser> userManager, 
-            SignInManager<ApplicationUser> signInManager)
-        {
-            _context = context;
-            _userManager = userManager;
-            _signInManager = signInManager;
-        }
-
+        
         #endregion
 
         public IActionResult Index()

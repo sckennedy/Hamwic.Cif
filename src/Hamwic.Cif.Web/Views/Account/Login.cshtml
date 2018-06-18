@@ -1,0 +1,50 @@
+﻿@model Hamwic.Cif.Web.Models.Account.LoginModel
+@{
+    ViewData["Title"] = "Account";
+    Layout = "_PublicLayout";
+}
+
+
+<div class="container login">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-img">
+                        <img class="img-fluid" src="~/img/logo/hamwic.png" alt="Hamwic logo" />
+                    </div>
+                    <p class="h4 text-center py-4">Login</p>
+                    <form asp-action="Login" asp-controller="Account">
+                        <!-- Material input email -->
+                        <div class="md-form">
+                            <div class="form-group">
+                                <i class="fa fa-envelope prefix"></i>
+                                <label asp-for="@Model.EmailAddress"></label>
+                                <input asp-for="@Model.EmailAddress" class="form-control" />
+                                <span asp-validation-for="@Model.EmailAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- Material input password -->
+                        <div class="md-form">
+                            <div class="form-group">
+                                <i class="fa fa-lock prefix"></i>
+                                <label asp-for="@Model.Password"></label>
+                                <input asp-for="@Model.Password" class="form-control" />
+                                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-default waves-effect waves-light" type="submit">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="options">
+                        <p>Forgot <a href="@Url.Action("ForgotPassword")">Password?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

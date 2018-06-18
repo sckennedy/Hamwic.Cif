@@ -1,5 +1,10 @@
-﻿<!--Navbar-->
-<nav class="navbar sticky-top navbar-expand-md navbar-dark primary-color">
+﻿@using Hamwic.Cif.Core.Entities
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!--Navbar-->
+<nav class="navbar sticky-top navbar-expand-md navbar-dark green darken-3">
 
     <!-- Navbar brand -->
     <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Hamwic.Cif</a>
@@ -13,28 +18,21 @@
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="basicExampleNav">
 
-        <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="/Identity/Account/Register">Register</a></li>
-            <li class="nav-item"><a class="nav-link" href="/Identity/Account/Login">Login</a></li>
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-
-        </ul>
-        <!-- Links -->
-
-        <form class="form-inline">
-            <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            </div>
-        </form>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <form asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a asp-area="MyAccount" 
+                           asp-controller="PersonalDetails" 
+                           asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                    </li>
+                </ul>
+            </form>
+        }
     </div>
     <!-- Collapsible content -->
 

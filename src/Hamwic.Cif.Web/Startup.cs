@@ -1,13 +1,18 @@
-﻿using Hamwic.Cif.Core.Data;
+﻿using System;
+using Hamwic.Cif.Core.Data;
 using Hamwic.Cif.Core.Entities;
+using Hamwic.Cif.Web.Framework;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Hamwic.Cif.Web
 {
@@ -32,20 +37,41 @@ namespace Hamwic.Cif.Web
 
             //AddIdentity adds cookie based authentication
             //also adds scoped classed for UserManager, SignInManager, PasswordHashers etc.
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    options.Stores.MaxLengthForKeys = 128;
+                    options.User.RequireUniqueEmail = true;
+                })
                 //This adds the UserStore and RoleStore that the RoleManager, UserManager etc need
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultUI()
                 //Adds a provider that generates unique keys and hashes for things like
                 //forgot password links, phone number verification codes etc.
                 .AddDefaultTokenProviders();
 
-            services.ConfigureApplicationCookie(options => { options.LoginPath = "/login"; });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.Cookie.HttpOnly = true; 
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("HamwicCifDb")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //this utilities class works with the ServiceBasedControllerActivator middleware to populate the 
+            //properties on the ControllerBase object
+            services.AddScoped<IIocUtilities, NetCoreIocUtilities>();
+
+            //this implementation enables property injection in to the controllers, in particular the controllerbase
+            services.AddScoped<IControllerActivator, Framework.ServiceBasedControllerActivator>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddControllersAsServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
