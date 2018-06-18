@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Serilog;
 
 namespace Hamwic.Cif.Web
 {
@@ -59,7 +60,7 @@ namespace Hamwic.Cif.Web
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("HamwicCifDb")));
+                options.UseSqlServer(FindConnectionString()));
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -103,6 +104,35 @@ namespace Hamwic.Cif.Web
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
             });
+        }
+
+        private string FindConnectionString()
+        {
+            var connectionStringNames = new[]
+            {
+                $"HamwicCifDb-{Environment.MachineName}",
+                $"HamwicCifDb"
+            };
+
+            string connectionString = null;
+            foreach (var connectionStringName in connectionStringNames)
+            {
+                connectionString = Configuration.GetConnectionString(connectionStringName);
+                if (connectionString != null)
+                    break;
+
+                Console.WriteLine("WARNING: Unable to find a connection string named {0}", connectionStringName);
+            }
+
+            if (connectionString == null)
+            {
+                Log.Error("Unable to find a connection string with any of the names " +
+                          string.Join(", ", connectionStringNames));
+                throw new Exception("Unable to find connection string name in appsettings");
+            }
+
+            Log.Information($"Using connection string {connectionString}");
+            return connectionString;
         }
     }
 }
