@@ -3,11 +3,13 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<!--Navbar-->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white top-nav-collapse">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light top-nav-collapse main-background-colour">
 
     <!-- Navbar brand -->
-    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Critical Incidents</a>
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+        <img class="pr-3" src="~/img/logo/hamwic.png" alt="Hamwic logo" height="30" />
+        Critical Incidents
+    </a>
 
     <!-- Collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicNav" aria-controls="basicNav"
@@ -30,7 +32,7 @@
                         <a asp-controller="PersonalDetails" asp-area="MyAccount" asp-action="Index" title="Manage My Details" class="nav-link">Welcome @UserManager.GetUserName(User)</a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="Account" asp-action="Logout" class="nav-link" title="Logout"><i class="fa fa-lock mr-1"></i>Logout</a>
+                        <a asp-area="" asp-controller="Account" asp-action="Logout" class="nav-link" title="Logout"><i class="fa fa-lock mr-1"></i>Logout</a>
                     </li>
                 </ul>
             </div>

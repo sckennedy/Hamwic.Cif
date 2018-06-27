@@ -1,3 +1,43 @@
-﻿.login {
-    padding-top: 4%
+﻿/* This ensures that there is sufficient space at the top of the login form*/
+.login {
+    padding-top: 4%;
+}
+
+/* Main Colour Themes*/
+.main-background-colour {
+    background-color: #f2ead6;
+}
+
+.navbar {
+    -webkit-box-shadow: 0 6px 6px -6px #999;
+    -moz-box-shadow: 0 6px 6px -6px #999;
+    box-shadow: 0 6px 6px -6px #999;
+    /* the rest of your styling */
+}
+
+/* These classes deal with  the floating label for the form controls*/
+.has-float-label label, .has-float-label > span {
+    opacity: 0.9 !important;
+}
+
+.has-float-label input:focus,
+.has-float-label textarea:focus,
+.has-float-label select:focus {
+    border-color: #2CA8B3;
+    box-shadow: none;
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus) + * {
+    font-size: 100%;
+    margin-top: 4px;
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus) + * {
+    font-size: 100% !important;
+    opacity: 0.5 !important;
+    top: 0.5em !important;
+}
+
+.validation-summary-errors > ul{
+    list-style-type: none;
 }

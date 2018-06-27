@@ -19,16 +19,16 @@ namespace Hamwic.Cif.Core.Data
             var adminId = await EnsureUser(serviceProvider, password, "Administrator", "admin@hamwic.org");
             await EnsureRole(serviceProvider, adminId, RoleNames.SystemAdministrator);
 
-            var hamwicId = await EnsureUser(serviceProvider, password, "Hamwic User", "hamwic@hamwic.org");
+            var hamwicId = await EnsureUser(serviceProvider, password, "HamwicUser", "hamwic@hamwic.org");
             await EnsureRole(serviceProvider, hamwicId, RoleNames.HamwicUser);
 
-            var execHeadId = await EnsureUser(serviceProvider, password, "Exec Head", "exec@hamwic.org");
+            var execHeadId = await EnsureUser(serviceProvider, password, "ExecHead", "exec@hamwic.org");
             await EnsureRole(serviceProvider, execHeadId, RoleNames.ExecutiveHeadTeacher);
 
-            var headId = await EnsureUser(serviceProvider, password, "Head Teacher", "head@hamwic.org");
+            var headId = await EnsureUser(serviceProvider, password, "HeadTeacher", "head@hamwic.org");
             await EnsureRole(serviceProvider, headId, RoleNames.HeadTeacher);
 
-            var userId = await EnsureUser(serviceProvider, password, "School User", "school@hamwic.org");
+            var userId = await EnsureUser(serviceProvider, password, "SchoolUser", "school@hamwic.org");
             await EnsureRole(serviceProvider, userId, RoleNames.SchoolUser);
 
             context.SaveChanges();

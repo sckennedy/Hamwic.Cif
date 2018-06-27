@@ -95,7 +95,14 @@ namespace Hamwic.Cif.Web.Controllers
         [AllowAnonymous]
         public IActionResult ForgotPassword()
         {
-            return Content("Forgot Password");
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword(ForgotPasswordModel model)
+        {
+            return RedirectToAction("Login");
         }
 
         //GET
