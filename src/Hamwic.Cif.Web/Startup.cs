@@ -2,7 +2,9 @@
 using Hamwic.Cif.Core.Data;
 using Hamwic.Cif.Core.Entities;
 using Hamwic.Cif.Web.Framework;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serilog;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Hamwic.Cif.Web
 {
@@ -71,7 +74,13 @@ namespace Hamwic.Cif.Web
             //this implementation enables property injection in to the controllers, in particular the controllerbase
             services.AddScoped<IControllerActivator, Framework.ServiceBasedControllerActivator>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            services.AddMvc(config =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build();
+                    config.Filters.Add(new AuthorizeFilter(policy));
+                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddControllersAsServices();
         }
 
@@ -97,12 +106,13 @@ namespace Hamwic.Cif.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
+
             });
         }
 
@@ -110,7 +120,7 @@ namespace Hamwic.Cif.Web
         {
             var connectionStringNames = new[]
             {
-                $"HamwicCifDb-{Environment.MachineName}",
+                $"HamwicCifDb_{Environment.MachineName}",
                 $"HamwicCifDb"
             };
 

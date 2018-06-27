@@ -12,5 +12,6 @@ namespace Hamwic.Cif.Web.Models.Account
         [DataType(DataType.Password)]
         public string Password {get; set;}
         public string ReturnUrl {get; set;}
+        public bool RememberMe {get; set;}
     }
 }

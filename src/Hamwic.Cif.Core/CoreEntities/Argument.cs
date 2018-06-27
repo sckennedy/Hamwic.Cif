@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Hamwic.Cif.Core
+namespace Hamwic.Cif.Core.CoreEntities
 {
     /// <summary>
     /// Provides standard argument validation methods

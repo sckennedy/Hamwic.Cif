@@ -46,7 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\MyAccount\Views\Index.cshtml" />
+    <None Include="Areas\MyAccount\Views\PersonalDetails\Index.cshtml" />
     <None Include="wwwroot\img\lightbox\default-skin.svg" />
     <None Include="wwwroot\img\svg\arrow_left.svg" />
     <None Include="wwwroot\img\svg\arrow_right.svg" />
@@ -63,8 +63,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Account\Lockout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Account\AccessDenied.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>

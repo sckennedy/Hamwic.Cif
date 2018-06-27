@@ -40,7 +40,7 @@ namespace Hamwic.Cif.Web
                     try
                     {
                         var context = services.GetRequiredService<ApplicationDbContext>();
-                        DbInitialiser.Initialise(context);
+                        DbInitialiser.Initialise(context, services, Configuration["DefaultPassword"]).Wait();
                     }
                     catch (Exception ex)
                     {
@@ -76,6 +76,11 @@ namespace Hamwic.Cif.Web
                 .Build();
         }
 
+        /// <summary>
+        /// Set up the Serilog logging
+        /// </summary>
+        /// <param name="config">Configuration settings</param>
+        /// <returns></returns>
         private static ILogger CreateLogger(IConfiguration config)
         {
             var env = string.IsNullOrEmpty(config["Environment"]) ? "local" : config["Environment"];

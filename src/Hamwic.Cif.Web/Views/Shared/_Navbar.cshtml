@@ -4,34 +4,37 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <!--Navbar-->
-<nav class="navbar sticky-top navbar-expand-md navbar-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white top-nav-collapse">
 
     <!-- Navbar brand -->
     <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Critical Incidents</a>
 
     <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicNav" aria-controls="basicNav"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
+    <div class="collapse navbar-collapse" id="basicNav">
 
         @if (SignInManager.IsSignedIn(User))
         {
-            <form asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a asp-area="MyAccount" 
-                           asp-controller="PersonalDetails" 
-                           asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            <ul class="navbar-nav mr-auto">
+                
+            </ul>
+
+            <div class="md-form my-0">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a asp-controller="PersonalDetails" asp-area="MyAccount" asp-action="Index" title="Manage My Details" class="nav-link">Welcome @UserManager.GetUserName(User)</a>
                     </li>
-                    <li>
-                        <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                    <li class="nav-item">
+                        <a asp-controller="Account" asp-action="Logout" class="nav-link" title="Logout"><i class="fa fa-lock mr-1"></i>Logout</a>
                     </li>
                 </ul>
-            </form>
+            </div>
+            
         }
     </div>
     <!-- Collapsible content -->
