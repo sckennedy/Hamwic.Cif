@@ -1,5 +1,5 @@
 ﻿@using Hamwic.Cif.Core.Extension
-@model String
+@model Int16
 @{
     var fieldName = string.IsNullOrEmpty(ViewData.ModelMetadata.DisplayName.SplitOnCapitalLetter())
         ? ViewData.ModelMetadata.PropertyName.SplitOnCapitalLetter()
@@ -7,7 +7,7 @@
 }
 <div class="form-group">
     <label asp-for="@Model" class="form-group has-float-label">
-        <input asp-for="@Model" class="form-control" type="text" />
+        <input asp-for="@Model" class="form-control" type="number" />
         <span>@fieldName</span>
     </label>
     <span asp-validation-for="@Model" class="text-danger"></span>

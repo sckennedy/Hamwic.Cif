@@ -92,22 +92,22 @@ namespace Hamwic.Cif.Web
                 .Enrich.WithProperty("Application", "Hamwic.Cif.Web")
                 .Enrich.WithProperty("env", env)
                 .WriteTo.Console()
-                .WriteTo.Elasticsearch(
-                    new ElasticsearchSinkOptions(new Uri(
-                        "https://logsene-receiver.eu.sematext.com/75c9ba92-9687-4c67-bcac-38500a9ee817/hamwic.cif/"))
-                    {
-                        BatchPostingLimit = 2,
-                        InlineFields = true,
-                        MinimumLogEventLevel = LogEventLevel.Information
-                    })
+                .WriteTo.RollingFile("./Logs/Hamwic.Cif.Web-{Date}.log")
                 .MinimumLevel.Information()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .MinimumLevel.Override("System", LogEventLevel.Error);
 
-            if (!string.Equals(env, "prod", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(env, "prod", StringComparison.OrdinalIgnoreCase))
             {
                 return loggerConfig
-                    .WriteTo.RollingFile("./Logs/Hamwic.Cif.Web-{Date}.log")
+                    .WriteTo.Elasticsearch(
+                        new ElasticsearchSinkOptions(new Uri(
+                            "https://logsene-receiver.eu.sematext.com/75c9ba92-9687-4c67-bcac-38500a9ee817/hamwic.cif/"))
+                        {
+                            BatchPostingLimit = 2,
+                            InlineFields = true,
+                            MinimumLogEventLevel = LogEventLevel.Information
+                        })
                     .CreateLogger();
             }
 

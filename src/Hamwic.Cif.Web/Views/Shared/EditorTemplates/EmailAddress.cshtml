@@ -1,6 +1,9 @@
-﻿@model String
+﻿@using Hamwic.Cif.Core.Extension
+@model String
 @{
-    var fieldName = string.IsNullOrEmpty(ViewData.ModelMetadata.DisplayName) ? ViewData.ModelMetadata.PropertyName : ViewData.ModelMetadata.DisplayName;
+    var fieldName = string.IsNullOrEmpty(ViewData.ModelMetadata.DisplayName.SplitOnCapitalLetter()) 
+        ? ViewData.ModelMetadata.PropertyName.SplitOnCapitalLetter() 
+        : ViewData.ModelMetadata.DisplayName.SplitOnCapitalLetter();
 }
 <div class="form-group">
     <label asp-for="@Model" class="form-group has-float-label">

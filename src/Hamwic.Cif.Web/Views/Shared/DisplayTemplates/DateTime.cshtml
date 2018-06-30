@@ -1,5 +1,5 @@
 ﻿@using Hamwic.Cif.Core.Extension
-@model String
+@model DateTime
 @{
     var fieldName = string.IsNullOrEmpty(ViewData.ModelMetadata.DisplayName.SplitOnCapitalLetter())
         ? ViewData.ModelMetadata.PropertyName.SplitOnCapitalLetter()
@@ -7,8 +7,7 @@
 }
 <div class="form-group">
     <label asp-for="@Model" class="form-group has-float-label">
-        <input asp-for="@Model" class="form-control" placeholder="***" type="password" />
+        <input asp-for="@Model" class="form-control" readonly placeholder="__/__/____ __:__" type="datetime" />
         <span>@fieldName</span>
     </label>
-    <span asp-validation-for="@Model" class="text-danger"></span>
 </div>
