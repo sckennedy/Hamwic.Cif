@@ -16,21 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Bold.eot" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Bold.ttf" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Bold.woff" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Light.eot" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Light.ttf" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Light.woff" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Medium.eot" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Medium.ttf" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Medium.woff" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Regular.eot" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Regular.ttf" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Regular.woff" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Thin.eot" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Thin.ttf" />
-    <Content Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Thin.woff" />
+    <Content Include="Areas\MyAccount\Views\_ViewStart.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -46,15 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\MyAccount\Views\Index.cshtml" />
+    <None Include="Areas\MyAccount\Views\PersonalDetails\Index.cshtml" />
     <None Include="wwwroot\img\lightbox\default-skin.svg" />
     <None Include="wwwroot\img\svg\arrow_left.svg" />
     <None Include="wwwroot\img\svg\arrow_right.svg" />
-    <None Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Bold.woff2" />
-    <None Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Light.woff2" />
-    <None Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Medium.woff2" />
-    <None Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Regular.woff2" />
-    <None Include="wwwroot\node_modules\mdbootstrap\font\roboto\Roboto-Thin.woff2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,10 +47,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="Views\Account\Lockout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Account\AccessDenied.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Account\ForgotPassword.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Account\Login.cshtml">
@@ -75,8 +68,20 @@
     <Content Update="Views\Account\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\EditorTemplates\String.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\EditorTemplates\Password.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\EditorTemplates\EmailAddress.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_PublicLayout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

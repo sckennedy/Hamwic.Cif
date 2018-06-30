@@ -1,12 +1,10 @@
 ﻿using Hamwic.Cif.Web.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Hamwic.Cif.Web.Controllers
 {
-    [Authorize]
     public class HomeController : BaseController
     {
         #region Private readonly variables

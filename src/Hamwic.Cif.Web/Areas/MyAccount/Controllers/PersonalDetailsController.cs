@@ -2,6 +2,7 @@
 
 namespace Hamwic.Cif.Web.Areas.MyAccount.Controllers
 {
+    [Area("MyAccount")]
     public class PersonalDetailsController : Controller
     {
         // GET
