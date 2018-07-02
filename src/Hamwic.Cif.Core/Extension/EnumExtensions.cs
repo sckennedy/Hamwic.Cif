@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using Hamwic.Cif.Core.Attributes;
-using Hamwic.Cif.Core.CoreEntities;
 
-namespace Hamwic.Cif.Core.Extension
+namespace Hamwic.Core.Extension
 {
     public static class EnumExtensions
     {

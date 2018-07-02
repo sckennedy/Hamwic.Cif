@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hamwic.Cif.Core.Interfaces
+namespace Hamwic.Core.Interfaces
 {
     public interface IKeyedEntity<T> : IEquatable<IKeyedEntity<T>>
     {

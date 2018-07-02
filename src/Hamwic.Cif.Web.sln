@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamwic.Cif.Web", "Hamwic.Cif.Web\Hamwic.Cif.Web.csproj", "{69A778ED-4C89-4F78-9F7D-B9D8183AB1F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamwic.Cif.Core.Implementation", "Hamwic.Cif.Core.Implementation\Hamwic.Cif.Core.Implementation.csproj", "{027B220D-CF8C-4087-9ADD-8668FC4E3FED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamwic.Cif.Core.Implementation", "Hamwic.Cif.Core.Implementation\Hamwic.Cif.Core.Implementation.csproj", "{027B220D-CF8C-4087-9ADD-8668FC4E3FED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamwic.Cif.Core", "Hamwic.Cif.Core\Hamwic.Cif.Core.csproj", "{8D21DB41-DA5A-48EF-A4AE-165D35760F53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamwic.Cif.Core", "Hamwic.Cif.Core\Hamwic.Cif.Core.csproj", "{8D21DB41-DA5A-48EF-A4AE-165D35760F53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamwic.Core", "Hamwic.Core\Hamwic.Core.csproj", "{B428980C-7CCA-4773-B286-7D16E7A97E1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8D21DB41-DA5A-48EF-A4AE-165D35760F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D21DB41-DA5A-48EF-A4AE-165D35760F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D21DB41-DA5A-48EF-A4AE-165D35760F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B428980C-7CCA-4773-B286-7D16E7A97E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B428980C-7CCA-4773-B286-7D16E7A97E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B428980C-7CCA-4773-B286-7D16E7A97E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B428980C-7CCA-4773-B286-7D16E7A97E1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Hamwic.Cif.Core.Attributes;
 
-namespace Hamwic.Cif.Core.Extension
+namespace Hamwic.Core.Extension
 {
     public static class ReflectionExtensions
     {

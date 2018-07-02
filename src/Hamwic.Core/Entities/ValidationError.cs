@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hamwic.Cif.Core.CoreEntities
+namespace Hamwic.Core.Entities
 {
     public class ValidationError
     {

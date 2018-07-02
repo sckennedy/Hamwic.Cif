@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hamwic.Cif.Core.Constants
+namespace Hamwic.Core.Constants
 {
     [Flags]
     public enum DaysOfWeek

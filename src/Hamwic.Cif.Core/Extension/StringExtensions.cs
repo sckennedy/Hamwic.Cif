@@ -9,9 +9,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
-using Hamwic.Cif.Core.Constants;
 
-namespace Hamwic.Cif.Core.Extension
+namespace Hamwic.Core.Extension
 {
     public static class StringExtensions
     {

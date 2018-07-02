@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Hamwic.Cif.Core.CoreEntities
+namespace Hamwic.Core.Entities
 {
     public class ComparisonComparer<T> : IComparer<T>, IComparer
     {

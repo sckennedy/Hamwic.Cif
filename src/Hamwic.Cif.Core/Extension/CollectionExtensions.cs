@@ -5,11 +5,8 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Hamwic.Cif.Core.Attributes;
-using Hamwic.Cif.Core.CoreEntities;
-using Hamwic.Cif.Core.Interfaces;
 
-namespace Hamwic.Cif.Core.Extension
+namespace Hamwic.Core.Extension
 {
     /// <summary>
     ///     Contains some useful extensions for working with collections.
@@ -183,7 +180,7 @@ namespace Hamwic.Cif.Core.Extension
 
         public static void Sort<T>(this IList<T> list, Comparison<T> comparison)
         {
-            ArrayList.Adapter((IList) list).Sort(new ComparisonComparer<T>(comparison));
+            ArrayList.Adapter((IList) list).Sort((IComparer) new ComparisonComparer<T>(comparison));
         }
 
         public static void Sort<T>(this IList<T> list, IComparer comparer)
@@ -195,7 +192,7 @@ namespace Hamwic.Cif.Core.Extension
         // Comparison<T> delegate to the OrderBy method.
         public static IEnumerable<T> OrderBy<T>(this IEnumerable<T> list, Comparison<T> comparison)
         {
-            return list.OrderBy(t => t, new ComparisonComparer<T>(comparison));
+            return list.OrderBy<T, T>(t => t, new ComparisonComparer<T>(comparison));
         }
 
         public static IEnumerable<T> OrderBy<T>(this IEnumerable<T> enumerable, string orderBy)

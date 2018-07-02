@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Hamwic.Core.Entities;
 
-namespace Hamwic.Cif.Core.Attributes
+namespace Hamwic.Core.Attributes
 {
     public class ValidateObjectAttribute : ValidationAttribute
     {

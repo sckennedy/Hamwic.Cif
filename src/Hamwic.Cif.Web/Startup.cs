@@ -1,7 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Hamwic.Cif.Core.Data;
 using Hamwic.Cif.Core.Entities;
+using Hamwic.Cif.Core.Events;
+using Hamwic.Cif.Core.Implementation.Events;
+using Hamwic.Cif.Core.Implementation.Services;
+using Hamwic.Cif.Core.Services;
 using Hamwic.Cif.Web.Framework;
+using Hamwic.Core.Commands;
+using Hamwic.Core.Events;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -62,18 +71,6 @@ namespace Hamwic.Cif.Web
                 options.SlidingExpiration = true;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(FindConnectionString()));
-
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            //this utilities class works with the ServiceBasedControllerActivator middleware to populate the 
-            //properties on the ControllerBase object
-            services.AddScoped<IIocUtilities, NetCoreIocUtilities>();
-
-            //this implementation enables property injection in to the controllers, in particular the controllerbase
-            services.AddScoped<IControllerActivator, Framework.ServiceBasedControllerActivator>();
-
             services.AddMvc(config =>
                 {
                     var policy = new AuthorizationPolicyBuilder()
@@ -82,6 +79,32 @@ namespace Hamwic.Cif.Web
                     config.Filters.Add(new AuthorizeFilter(policy));
                 }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddControllersAsServices();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(FindConnectionString()));
+
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //this utilities class works with the ServiceBasedControllerActivator middleware to populate the 
+            //properties on the ControllerBase object
+            services.AddScoped<IIocUtilities, NetCoreIocUtilities>();
+            //this implementation enables property injection in to the controllers, in particular the controllerbase
+            services.AddScoped<IControllerActivator, Framework.ServiceBasedControllerActivator>();
+            services.AddScoped<IViewRenderService, ViewRenderService>();
+            services.AddSingleton<ICommandProcessor, CommandProcessor>();
+            services.AddSingleton<IEventDispatcher, DomainEventDispatcher>();
+
+            //add the command handlers as scoped so we get a new one for each request.
+
+
+            //add the event handlers as scoped so we get a new one for each request
+            services.AddScoped<IDomainEventHandler<UserLoggedInEvent>, UserLoggedInEventHandler>();
+            var domainEvents = GetIDomainEventTypes(Assembly.GetAssembly(typeof(UserLoggedInEvent)));
+
+            foreach (var domainEvent in domainEvents)
+            {
+                //services.AddScoped<IDomainEventHandler<typeof(domainEvent)>, UserLoggedInEventHandler>();
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -116,6 +139,12 @@ namespace Hamwic.Cif.Web
             });
         }
 
+        /// <summary>
+        /// Method that combines the machine name with the solution to try to find the connection
+        /// string for the executing machine with a fallback to the main connection
+        /// string if machine specific one is not found.
+        /// </summary>
+        /// <returns>string: connectionstring</returns>
         private string FindConnectionString()
         {
             var connectionStringNames = new[]
@@ -143,6 +172,12 @@ namespace Hamwic.Cif.Web
 
             Log.Information($"Using connection string {connectionString}");
             return connectionString;
+        }
+
+        private IEnumerable<Type> GetIDomainEventTypes(Assembly asm)
+        {
+            var it = typeof(IDomainEvent);
+            return asm.GetLoadableTypes().Where(it.IsAssignableFrom).ToList();
         }
     }
 }

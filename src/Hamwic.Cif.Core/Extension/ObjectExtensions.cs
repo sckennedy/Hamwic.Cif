@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,10 +8,8 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
-using Hamwic.Cif.Core.Attributes;
-using Hamwic.Cif.Core.CoreEntities;
 
-namespace Hamwic.Cif.Core.Extension
+namespace Hamwic.Core.Extension
 {
     public static class ObjectExtensions
     {

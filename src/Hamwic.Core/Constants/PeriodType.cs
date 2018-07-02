@@ -1,4 +1,4 @@
-﻿namespace Hamwic.Cif.Core.Constants
+﻿namespace Hamwic.Core.Constants
 {
     public enum PeriodType
     {

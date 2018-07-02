@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Hamwic.Cif.Core.Attributes
+namespace Hamwic.Core.Entities
 {
     public class CompositeValidationResult : ValidationResult
     {

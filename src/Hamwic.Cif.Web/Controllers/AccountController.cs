@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System.Threading.Tasks;
+using Hamwic.Cif.Core.Events;
 
 namespace Hamwic.Cif.Web.Controllers
 {
@@ -55,7 +56,7 @@ namespace Hamwic.Cif.Web.Controllers
                 var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    Log.Information($"{model.EmailAddress} signed in.");
+                    EventDispatcher.Raise(new UserLoggedInEvent(user));
                     return LocalRedirect(returnUrl);
                 }
                 if (result.IsLockedOut)

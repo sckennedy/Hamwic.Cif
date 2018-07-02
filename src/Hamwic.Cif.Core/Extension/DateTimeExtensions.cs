@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Hamwic.Cif.Core.Constants;
 
-namespace Hamwic.Cif.Core.Extension
+namespace Hamwic.Core.Extension
 {
     public static class DateTimeExtensions
     {
