@@ -99,12 +99,6 @@ namespace Hamwic.Cif.Web
 
             //add the event handlers as scoped so we get a new one for each request
             services.AddScoped<IDomainEventHandler<UserLoggedInEvent>, UserLoggedInEventHandler>();
-            var domainEvents = GetIDomainEventTypes(Assembly.GetAssembly(typeof(UserLoggedInEvent)));
-
-            foreach (var domainEvent in domainEvents)
-            {
-                //services.AddScoped<IDomainEventHandler<typeof(domainEvent)>, UserLoggedInEventHandler>();
-            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -172,12 +166,6 @@ namespace Hamwic.Cif.Web
 
             Log.Information($"Using connection string {connectionString}");
             return connectionString;
-        }
-
-        private IEnumerable<Type> GetIDomainEventTypes(Assembly asm)
-        {
-            var it = typeof(IDomainEvent);
-            return asm.GetLoadableTypes().Where(it.IsAssignableFrom).ToList();
         }
     }
 }
