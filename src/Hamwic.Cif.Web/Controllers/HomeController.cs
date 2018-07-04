@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Hamwic.Cif.Web.Extensions;
 
 namespace Hamwic.Cif.Web.Controllers
 {
@@ -14,7 +15,7 @@ namespace Hamwic.Cif.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View().WithSuccess("Logged In", "You logged in");
         }
 
         [Route("create")]
