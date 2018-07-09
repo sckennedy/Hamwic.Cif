@@ -27,6 +27,13 @@
     box-shadow: none;
 }
 
+.alert {
+    position: fixed;
+    margin-top: 70px;
+    min-width: 300px;
+    right: 1%;
+}
+
 .has-float-label .form-control:placeholder-shown:not(:focus) + * {
     font-size: 100%;
     margin-top: 4px;
@@ -41,3 +48,4 @@
 .validation-summary-errors > ul{
     list-style-type: none;
 }
+
