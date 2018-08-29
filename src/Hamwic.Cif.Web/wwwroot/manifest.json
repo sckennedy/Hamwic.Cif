@@ -1,8 +1,8 @@
 {
-  "name": "Hamwic Cif Web",
-  "short_name": "Cif",
+  "name": "NewCo Employee Directory",
+  "short_name": "NewCo",
   "orientation": "portrait",
-  "description": "Critical incident form",
+  "description": "New company employee directory and intranet",
   "display": "standalone",
   "icons": [
     {

@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>f4a305bf-d2e7-4338-868f-b6ebb6e49b8d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.3" />
-    <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.42" />
+    <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

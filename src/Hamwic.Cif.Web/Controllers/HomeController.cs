@@ -13,20 +13,11 @@ namespace Hamwic.Cif.Web.Controllers
     {
         #region Private readonly variables
 
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-
         #endregion
 
         #region Constructor
-        public HomeController(ApplicationDbContext context, 
-            UserManager<ApplicationUser> userManager, 
-            SignInManager<ApplicationUser> signInManager)
+        public HomeController()
         {
-            _context = context;
-            _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         #endregion

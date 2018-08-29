@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebEssentials.AspNetCore.Pwa;
 
 namespace Hamwic.Cif.Web
 {
@@ -46,7 +45,7 @@ namespace Hamwic.Cif.Web
                 options.UseSqlServer(Configuration.GetConnectionString("HamwicCifDb")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddHttpContextAccessor();
             services.AddProgressiveWebApp();
         }
 
