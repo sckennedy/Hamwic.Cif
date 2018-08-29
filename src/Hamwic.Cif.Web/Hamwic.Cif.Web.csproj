@@ -7,18 +7,17 @@
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\img\lightbox\default-skin.svg" />
-    <None Include="wwwroot\img\svg\arrow_left.svg" />
-    <None Include="wwwroot\img\svg\arrow_right.svg" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.3" />
+    <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.42" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Hamwic.Cif.Core.Implementation\Hamwic.Cif.Core.Implementation.csproj" />
     <ProjectReference Include="..\Hamwic.Cif.Core\Hamwic.Cif.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
 </Project>
